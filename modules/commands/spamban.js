@@ -3,7 +3,7 @@
   version: "1.0.0",
   hasPermssion: 0,
   credits: "NTKhang", //mod lại tí :)) D-Jukie
-  description: "tự động cấm người dùng nếu spam bot 5 lần/100s",
+  description: "tự động cấm người dùng nếu spam bot 7 lần/60s",
   commandCategory: "Hệ thống",
   usages: "x",
   cooldowns: 5
@@ -39,7 +39,7 @@ module.exports.handleReply = async function({ api, args, event, handleReply, Use
 };
 
 module.exports. run = ({api, event, args, Users,Threads}) => {
-  return api.sendMessage("Tự động cấm người dùng nếu spam bot 5 lần/1 phút", event.threadID, event.messageID);
+  return api.sendMessage("Tự động cấm người dùng nếu spam bot 8 lần/1 phút", event.threadID, event.messageID);
 };
 
 module.exports.handleEvent = async function ({ api, event, args, Users,Threads })  {
@@ -68,7 +68,7 @@ module.exports.handleEvent = async function ({ api, event, args, Users,Threads }
   }
   else {
     global.client.autoban[senderID].number++;
-    if (global.client.autoban[senderID].number >=5) {
+    if (global.client.autoban[senderID].number >=7) {
       const moment = require("moment-timezone");
       const timeDate = moment.tz("Asia/Ho_Chi_minh").format("DD/MM/YYYY HH:mm:ss");
       let dataUser = await Users.getData(senderID) || {};
@@ -84,11 +84,11 @@ module.exports.handleEvent = async function ({ api, event, args, Users,Threads }
         number: 0
       };
     return api.sendMessage(
-    `⚡Người dùng đã bị ban\n⚡Tên: ${dataUser.name}\n⚡ID: ${senderID}\n⚡Lý do: spam bot 5 lần/1 phút\n\n✔️Đã báo cáo đến admin\n Liên hệ Admin:https://www.facebook.com/iamptthanh để được ân xá :>`, threadID,
+    `⚡Người dùng đã bị ban\n⚡Tên: ${dataUser.name}\n⚡ID: ${senderID}\n⚡Lý do: spam bot 7 lần/1 phút\n\n✔️Đã báo cáo đến admin\n Liên hệ Admin:https://www.facebook.com/iamptthanh để được ân xá :>`, threadID,
     () => {
     var idad = global.config.ADMINBOT;
     for(let ad of idad) {
-        api.sendMessage(`⚡Người vi phạm: ${dataUser.name}\n⚡ID: ${senderID}\n⚡Box: ${namethread}\n⚡ID box: ${idbox}\n⚡Lý do: spam bot 5 lần/1 phút\n\n⚡Vi phạm vào lúc: ${timeDate}`,
+        api.sendMessage(`⚡Người vi phạm: ${dataUser.name}\n⚡ID: ${senderID}\n⚡Box: ${namethread}\n⚡ID box: ${idbox}\n⚡Lý do: spam bot 7 lần/1 phút\n\n⚡Vi phạm vào lúc: ${timeDate}`,
           ad, (error, info) =>
             global.client.handleReply.push({
               name: this.config.name,
