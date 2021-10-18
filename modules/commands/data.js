@@ -5,7 +5,7 @@ module.exports.config = {
   credits: "HelyT",
   description: "",
   commandCategory: "economy",
-  usages: "data money add/del/set [0] @<mentions>",
+  usages: "data exp/money add/del/set [0] @<mentions>",
   cooldowns: 0,
 };
 module.exports.onLoad = async () => {
@@ -38,11 +38,34 @@ module.exports.run = async function({ api, event, args, Currencies, utils,Users,
           
             if(!mentions){
         var data = await Currencies.getData(senderID);
-        
-       var money = data.money
+        var exp =  data.exp;
+        var money = data.money
       
 
 
+
+
+        if(args[0] == 'exp'){
+              if(!args[1])api.sendMessage("Exp: " + exp,threadID,messageID)
+              if(args[1] == 'add'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã cộng thêm " + expadd + " exp cho bản thân !",threadID, () => Currencies.setData(senderID, options = {exp: exp + parseInt(expadd)}),messageID);
+            }
+              if(args[1] == 'del'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã trừ " + expadd + " exp cho bản thân !",threadID, () => Currencies.setData(senderID, options = {exp: exp - parseInt(expadd)}),messageID);
+            }
+              if(args[1] == 'set'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã reset exp của bản thân thành: "  + expadd,threadID, () => Currencies.setData(senderID, options = {exp: parseInt(expadd)}),messageID);
+            }
+         }
               if(args[0] == 'money'){
               
               if(!args[1])api.sendMessage("Money: " + money + " đô",threadID,messageID)
@@ -75,7 +98,26 @@ module.exports.run = async function({ api, event, args, Currencies, utils,Users,
           let name = Users.getData(mentions).name || (await api.getUserInfo(mentions))[mentions].name;
           const expp = (await Currencies.getData(mentions)).exp;
           console.log(expp)
-
+          if(args[0] == 'exp'){
+              if(args[1] == 'add'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã cộng thêm " + expadd + " exp cho " + name,threadID, () => Currencies.setData(mentions, options = {exp: exp + parseInt(expadd)}),messageID);
+            }
+              if(args[1] == 'del'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã trừ " + expadd + " exp cho " + name,threadID, () => Currencies.setData(mentions, options = {exp: exp - parseInt(expadd)}),messageID);
+            }
+              if(args[1] == 'set'){
+              let expadd = args[2]
+              console.log(expadd)
+              if(!args[2])api.sendMessage("Không có tham số !",threadID,messageID)
+              else api.sendMessage("Đã reset exp của " + name + " thành: "  + expadd,threadID, () => Currencies.setData(mentions, options = {exp: parseInt(expadd)}),messageID);
+            }
+         }
               if(args[0] == 'money'){
              
               if(!args[1])api.sendMessage("Money: " + money + " đô",threadID,messageID)
