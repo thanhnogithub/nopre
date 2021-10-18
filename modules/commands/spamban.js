@@ -39,7 +39,7 @@ module.exports.handleReply = async function({ api, args, event, handleReply, Use
 };
 
 module.exports. run = ({api, event, args, Users,Threads}) => {
-  return api.sendMessage("Tự động cấm người dùng nếu spam bot 8 lần/1 phút", event.threadID, event.messageID);
+  return api.sendMessage("Tự động cấm người dùng nếu spam bot 7 lần/1 phút", event.threadID, event.messageID);
 };
 
 module.exports.handleEvent = async function ({ api, event, args, Users,Threads })  {
