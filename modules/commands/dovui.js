@@ -74,7 +74,7 @@ module.exports.handleReaction = ({ Users, api, event, handleReaction,  }) => {
 module.exports.run = async function ({ api, event, Users }) {
 const axios = global.nodemodule['axios'];  
 const { threadID, messageID } = event;
-const res = await axios.get(`https://simsimi.info/v1/dovui.php?apikey=leanhtruong`);
+const res = await axios.get(`https://simsimi.info/v2/dovui.php?apikey=leanhtruong`);
 const dataGame = res.data
 var namePlayer_react = await Users.getData(event.senderID)
         var msg = {body: `❔Câu hỏi dành cho bạn: ${dataGame.questions}\n\n👍/A. ${dataGame.a}\n❤️/B. ${dataGame.b}\n😆/C. ${dataGame.c}\n😮/D. ${dataGame.d}\n\n🌻Reply tin nhắn hoặc thả cảm xúc để trả lời`}
