@@ -2,7 +2,7 @@ module.exports.config = {
   name: "data",
   version: "1.0.2",
   hasPermssion: 2,
-  credits: "HelyT",
+  credits: "HelyTt",
   description: "",
   commandCategory: "economy",
   usages: "data exp/money add/del/set [0] @<mentions>",
