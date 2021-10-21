@@ -13,7 +13,7 @@ module.exports.run = async ({ api, event }) => {
 	const axios = require('axios');
 	const request = require('request');
 	const fs = require("fs");
-	axios.get('http://api.vangbanlanhat.tk/image?type=meme').then(res => {
+	axios.get('https://simsimi.info/v2/image.php?api_key=leanhtruong&image=memevn').then(res => {
 	let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
 	let callback = function () {
 					api.sendMessage({
